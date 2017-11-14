@@ -1,3 +1,4 @@
+
 class Store {
     constructor () {
         this.recipes = JSON.parse(window.localStorage.getItem('RECIPES')) || []
@@ -17,7 +18,7 @@ class Store {
         return JSON.parse(JSON.stringify(recipe))
     }
     
-    getRecipeIndex (id) {
+    indexOf (id) {
         return this.recipes.findIndex(recipe => {
             return recipe.id === id
         }) 
@@ -61,4 +62,4 @@ class Store {
     }
 }
 
-export default Store
+export default new Store()
