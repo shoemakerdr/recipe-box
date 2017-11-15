@@ -5,6 +5,7 @@ import RecipeList from './RecipeList'
 import Modal from './Modal'
 import RecipeCard from './RecipeCard'
 import EditCard from './EditCard'
+import NewCard from './NewCard'
 import store from './store'
 
 // Material Design palette
@@ -19,12 +20,17 @@ class App extends Component {
                         <h1>Recipe Box</h1>
                     </div>
                         <RecipeList recipes={store.selectAll()} />
-                        <Route path='/:recipe' render={props => (
+                        <Route path='/new' render={props => (
+                            <Modal {...props} >
+                                <NewCard {...props} store={store} />
+                            </Modal>
+                        )} />
+                        <Route path='/recipes/:recipe' render={props => (
                             <Modal {...props} >
                                 <RecipeCard {...props} store={store} />
                             </Modal>
                         )} />
-                        <Route path='/:recipe/edit' render={props => (
+                        <Route path='/edit/:recipe' render={props => (
                             <Modal {...props} >
                                 <EditCard {...props} store={store} />
                             </Modal>
