@@ -7,9 +7,12 @@ import RecipeCard from './RecipeCard'
 import EditCard from './EditCard'
 import NewCard from './NewCard'
 import store from './store'
+// import { setupStore } from './store-config'
 
 // Material Design palette
 // https://material.io/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=FFEB3B
+
+// setupStore(store)
 
 class App extends Component {
     constructor () {
