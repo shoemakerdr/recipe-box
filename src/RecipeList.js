@@ -34,7 +34,7 @@ const RecipeList = props => {
                         return (
                             <Link key={recipe.id} to={`/recipes/${recipe.id}`}>
                                 <div className='list-item'>
-                                    <h2>{recipe.name}</h2>
+                                    <h3>{recipe.name}</h3>
                                 </div>
                             </Link>
                         )
