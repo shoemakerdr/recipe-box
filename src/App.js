@@ -29,7 +29,7 @@ class App extends Component {
             }
         })
     }
-q
+
     componentDidUpdate () {
         if (this.state.escapePressed) {
             this.setState({escapePressed: false})
