@@ -1,4 +1,16 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+
+const styles = {
+    button: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#ffeb3b',
+        width: '64px',
+        height: '64px',
+    }
+}
 
 class RecipeCard extends Component {
     constructor (props) {
@@ -18,6 +30,7 @@ class RecipeCard extends Component {
                         <li key={i}>{ingredient}</li>
                     )}
                 </ul>
+                <Link to={`/edit/${this.id}`}><div style={styles.button}><h2>Edit</h2></div></Link>
             </div>
         )
     }
