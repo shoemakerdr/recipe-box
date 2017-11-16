@@ -15,7 +15,7 @@ class Modal extends Component {
     }
 
     redirectHome (event) {
-        if (event.target.id === 'Modal') {
+        if (event.target.id === 'Modal' || event.target.id === 'x-escape') {
             this.setState({shouldRedirect: true})
         }
     }
@@ -29,6 +29,13 @@ class Modal extends Component {
                 className='Modal modal-wrapper'
             >
                 <div className='modal-card'>
+                    <div
+                        id='x-escape'
+                        onClick={this.redirectHome}
+                        className='modal-x'
+                    >
+                        ×
+                    </div>
                     {this.props.children}
                 </div>
                 {shouldRedirect &&
