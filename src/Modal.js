@@ -6,8 +6,12 @@ class Modal extends Component {
         super(props)
         this.redirectHome = this.redirectHome.bind(this)
         this.state = {
-            shouldRedirect: false
+            shouldRedirect: props.escapePressed
         }
+    }
+
+    componentWillReceiveProps (nextProps) {
+        this.setState({shouldRedirect: nextProps.escapePressed})
     }
 
     redirectHome (event) {
@@ -19,7 +23,11 @@ class Modal extends Component {
     render () {
         const { shouldRedirect } = this.state
         return (
-            <div id='Modal' onClick={this.redirectHome} className='Modal modal-wrapper'>
+            <div
+                id='Modal'
+                onClick={this.redirectHome}
+                className='Modal modal-wrapper'
+            >
                 <div className='modal-card'>
                     {this.props.children}
                 </div>
