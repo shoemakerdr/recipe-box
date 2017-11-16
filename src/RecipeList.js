@@ -8,12 +8,6 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
     },
-    recipe: {
-        backgroundColor: '#757de8',
-        margin: '16px 64px',
-        padding: '4px 60px',
-        color: 'white',
-    },
     create: {
         display: 'flex',
         justifyContent: 'center',
@@ -30,7 +24,7 @@ const RecipeList = props => {
     return (
         <div style={styles.list}>
             <Link to='/new'>
-                <div style={styles.create}>
+                <div className='button create-button'>
                     <h1>+</h1>
                 </div>
             </Link>
@@ -39,7 +33,7 @@ const RecipeList = props => {
                     {props.recipes.map(recipe => {
                         return (
                             <Link key={recipe.id} to={`/recipes/${recipe.id}`}>
-                                <div style={styles.recipe}>
+                                <div className='list-item'>
                                     <h2>{recipe.name}</h2>
                                 </div>
                             </Link>
