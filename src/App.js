@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css'
 import RecipeList from './RecipeList'
 import Modal from './Modal'
@@ -26,7 +26,7 @@ class App extends Component {
             }
         })
     }
-
+q
     componentDidUpdate () {
         if (this.state.escapePressed) {
             this.setState({escapePressed: false})
@@ -45,7 +45,6 @@ class App extends Component {
                         <Route path='/new' render={props => (
                             <Modal escapePressed={escapePressed} {...props} >
                                 <NewCard {...props} store={store} />
-                                {this.shouldRedirect && <Redirect to='/' />}
                             </Modal>
                         )} />
                         <Route path='/recipes/:recipe' render={props => (
@@ -56,7 +55,6 @@ class App extends Component {
                         <Route path='/edit/:recipe' render={props => (
                             <Modal escapePressed={escapePressed} {...props} >
                                 <EditCard {...props} store={store} />
-                                {this.shouldRedirect && <Redirect to='/' />}
                             </Modal>
                         )} />
                 </div>
