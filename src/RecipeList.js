@@ -10,9 +10,8 @@ const styles = {
     },
     recipe: {
         backgroundColor: '#757de8',
-        borderRadius: '8px',
         margin: '16px 64px',
-        padding: '4px 160px',
+        padding: '4px 60px',
         color: 'white',
     },
     create: {
@@ -30,7 +29,7 @@ const styles = {
 const RecipeList = props => {
     return (
         <div style={styles.list}>
-            <Link to='/'>
+            <Link to='/new'>
                 <div style={styles.create}>
                     <h1>+</h1>
                 </div>
@@ -39,7 +38,7 @@ const RecipeList = props => {
                 <div>
                     {props.recipes.map(recipe => {
                         return (
-                            <Link key={recipe.id} to={`/${recipe.id}`}>
+                            <Link key={recipe.id} to={`/recipes/${recipe.id}`}>
                                 <div style={styles.recipe}>
                                     <h2>{recipe.name}</h2>
                                 </div>
