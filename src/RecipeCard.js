@@ -14,14 +14,19 @@ class RecipeCard extends Component {
         return (
             <div className='RecipeCard'>
                 <header>
-                    <h1>{this.state.recipe.name}</h1>
+                    <h1 className='header-name'>{this.state.recipe.name}</h1>
                 </header>
-                <ul className='card-content'>
-                    {this.state.recipe.ingredients.map((ingredient, i) =>
-                        <li key={i}>{ingredient}</li>
-                    )}
-                </ul>
-                <Link className='flex-center' to={`/edit/${this.id}`}><div className='button'><h2>Edit</h2></div></Link>
+                <div className='card-content'>
+                    <div className='ingredient-list'>
+                        <h1 className='label'>Ingredients:</h1>
+                        <div className='list'>
+                            {this.state.recipe.ingredients.map((ingredient, i) =>
+                                <p key={i}>{ingredient}</p>
+                            )}
+                        </div>
+                    </div>
+                    <Link className='flex-center' to={`/edit/${this.id}`}><button className='button'>edit</button></Link>
+                </div>
             </div>
         )
     }
