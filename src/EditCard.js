@@ -1,79 +1,41 @@
-import React, { Component } from 'react'
+import FormCard from './FormCard'
+import store from './store'
 
-class EditCard extends Component {
+class EditCard extends FormCard {
     constructor (props) {
         super(props)
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.nameChange = this.nameChange.bind(this)
         this.id = props.match.params.recipe
-        this.state = {
-            recipe: props.store.selectById(this.id)
+        this.redirectLink = `/recipes/${this.id}`
+        this.cancelLink = `/recipes/${this.id}`
+        this.recipe = props.store.selectById(this.id)
+        this.defaultState = {
+            shouldRedirect: false,
+            title: this.recipe.name,
+            name: this.recipe.name,
+            ingredients: this.recipe.ingredients
         }
+        this.state = this.defaultState
     }
-
-    handleSubmit () {}
-
-    nameChange () {}
-
-    ingredientChange () {}
-
-    deleteIngredient (index) {}
-
-    hasNoEmptyInputs () {}
-
-    canSubmit () {}
-
-    redirectToRecipe (id) {}
-
-    render () {
-        const { name, id, ingredients } = this.state.recipe
-        return (
-            <div className='EditCard'>
-                <header><h1>Edit Your Recipe</h1></header>
-                <form className='card-content' onSubmit={this.handleSubmit}>
-                    <input
-                        className='input'
-                        placeholder='Recipe Name'
-                        type="text"
-                        value={name}
-                        onChange={this.nameChange}
-                    />
-                    { ingredients.map((ingredient, i) => {
-                        return (
-                            <div key={i}>
-                                <input
-                                    className='input'
-                                    placeholder='Ingredient'
-                                    type="text"
-                                    name={`${i}`}
-                                    value={ingredient}
-                                    onChange={this.ingredientChange}
-                                />
-                                <button
-                                    className='button'
-                                    type='button'
-                                    onClick={() => this.deleteIngredient(i)}
-                                >
-                                    X
-                                </button>
-                            </div>
-                        )
-                    })}
-                    <button
-                        className={this.hasNoEmptyInputs() ? 'button' : 'disabled-button'}
-                        type='button'
-                        disabled={!this.hasNoEmptyInputs()}
-                        onClick={this.addIngredient}
-                    >
-                        Add Ingredient
-                    </button>
-                    <input
-                        className={this.canSubmit() ? 'button' : 'disabled-button'}
-                        type="submit"
-                        disabled={!this.canSubmit()}
-                        value="Submit" />
-                    {this.redirectToRecipe(id)}
-                </form>
-            </div>
-        )
+    
+    handleSubmit (event) {
+        event.preventDefault()
+        const recipe = {
+            name: this.state.name,
+            ingredients: this.state.ingredients,
+            id: this.id
+        }
+        store.update(recipe)
+        this.setState({shouldRedirect: true})
+    }
+    
+    nameChange (event) {
+        this.setState({
+            title: event.target.value,
+            name: event.target.value
+            
+        })
     }
 }
 export default EditCard
