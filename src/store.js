@@ -31,14 +31,15 @@ class Store {
     
     insert (recipe) {
         // id is assigned a random hex value
-        recipe.id = Number(Math.random()).toString(16).slice(2)
+        const id = Number(Math.random()).toString(16).slice(2)
+        recipe.id = id
         this.recipes.push(recipe)
         this.save()
-        return this
+        return id
     }
     
     update (recipe) {
-        const index = this.getRecipeIndex(recipe.id)
+        const index = this.indexOf(recipe.id)
         if (index === -1)
             throw Error('Error: there was an issue finding the recipe')
         this.recipes.splice(index, 1, recipe)
@@ -47,7 +48,7 @@ class Store {
     }
     
     remove (id) {
-        const index = this.getRecipeIndex(id)
+        const index = this.indexOf(id)
         if (index === -1)
             throw Error('Error: there was an issue finding the recipe')
         this.recipes.splice(index, 1)
