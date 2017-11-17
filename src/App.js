@@ -9,16 +9,15 @@ import NewCard from './NewCard'
 import store from './store'
 // import { setupStore } from './store-config'
 
-// Material Design palette
-// https://material.io/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=FFEB3B
-
 // setupStore(store)
 
 class App extends Component {
     constructor () {
         super()
+        this.removeRecipe = this.removeRecipe.bind(this)
         this.state = {
             escapePressed: false,
+            recipes: store.selectAll()
         }
     }
 
@@ -36,6 +35,15 @@ class App extends Component {
         }
     }
 
+    removeRecipe (id) {
+        return event => {
+            if (event.target.classList.contains('x-button')) {
+                store.remove(id)
+                this.setState({recipes: store.selectAll()})
+            }
+        }
+    }
+
     render() {
         const { escapePressed } = this.state
         return (
@@ -44,7 +52,7 @@ class App extends Component {
                     <div className="App-header">
                         <h1>Recipe Box</h1>
                     </div>
-                        <RecipeList recipes={store.selectAll()} />
+                        <RecipeList removeRecipe={this.removeRecipe} recipes={this.state.recipes} />
                         <Route path='/new' render={props => (
                             <Modal escapePressed={escapePressed} {...props} >
                                 <NewCard {...props} store={store} />
