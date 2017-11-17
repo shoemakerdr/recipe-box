@@ -16,6 +16,7 @@ header {
     position: absolute;
     top: 0px;
     width: 100%;
+    height: 82px;
     background-color: #3f51b5;
     color: #FFF;
 }
@@ -33,6 +34,7 @@ header {
 
 .modal-card {
     position: relative;
+    overflow-y: scroll;
     background-color: #FFF;
     width: 50%;
     margin: 64px 0;
@@ -40,7 +42,7 @@ header {
         0 10px 10px rgba(0,0,0,0.22);
 }
 
-.modal-x {
+.x-button {
     position: absolute;
     padding: 0 10px;
     border-radius: 100%;
@@ -55,7 +57,7 @@ header {
     transition: color 0.2s cubic-bezier(.25,.8,.25,1);
 }
 
-.modal-x:hover {
+.x-button:hover {
     padding: 0 10px;
     margin: 0;
     top: 2px;
@@ -64,13 +66,18 @@ header {
     color: #f44336;
 }
 
+.lower-z {
+    z-index: 1;
+}
+
 .card-content {
     margin-top: 100px;
 }
 
 .list-item {
+    position: relative;
     margin: 12px 0px;
-    padding: 2px 64px;
+    padding: 1px 48px;
     color: #FFF;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12),
         0 1px 2px rgba(0,0,0,0.24);
@@ -87,8 +94,12 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
     width: 100px;
     height: 48px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
     background-color: #ffeb3b;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12),
         0 1px 2px rgba(0,0,0,0.24);
@@ -100,6 +111,21 @@ header {
         0 10px 10px rgba(0,0,0,0.22);
 }
 
+.disabled-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    width: 100px;
+    height: 48px;
+    background-color: #e0e0e0;
+    color: #999;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+    transition: color 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
 .create-button {
     width: 64px;
     height: 64px;
@@ -107,8 +133,166 @@ header {
     border-radius: 100%;
 }
 
+.delete-button {
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    transition: color 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.delete-button:hover {
+    color: #f44336;
+}
+
+.disabled-delete-button {
+    border: none;
+    background-color: transparent;
+    color: #999;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+    transition: color 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.button + .button,
+.disabled-button + .disabled-button,
+.button + .disabled-button,
+.disabled-button + .button,
+.button + a,
+.disabled-button + a,
+a + .button,
+a + .disabled-button {
+    margin-left: 16px;
+}
+
+.text-input {
+    padding: 4px 8px;
+    font-size: 20px;
+    margin-bottom: 8px;
+    border: none;
+    border: 1px solid #3f51b5;
+    background-color: #e8eaf7;
+}
+
+.text-input-name {
+    font-size: 28px;
+}
+
+.text-input-placeholder {
+    padding: 12px;
+    display: inline;
+}
+
 .flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 8px;
+}
+
+.label {
+    margin-left: 32px;
+}
+
+.list {
+    flex-grow: 2;
+}
+
+.ingredient-list {
+    display: flex;
+    justify-content: space-around;
+}
+
+.recipe-name {
+    color: #FFF;
+}
+
+@media only screen and (max-width: 600px) {
+    .recipe-name {
+        font-size: 20px;
+        padding: 0 4px;
+    }
+    
+    .recipe-list {
+        width: 100%;
+    }
+    
+    .modal-wrapper {
+        position: static;
+    }
+    
+    .modal-card {
+        position: fixed;
+        margin:0;
+        top: 0;
+        left: 0;
+        z-index: 102;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .header-name {
+        font-size: 24px;
+    }
+    
+    .ingredient-form {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .text-input {
+        font-size: 18px;
+    }
+    
+    .text-input-name {
+        margin-top: 12px;
+        font-size: 24px;
+    }
+    
+    .delete-button {
+        font-size: 36px;
+    }
+    
+    .disabled-delete-button {
+        font-size: 36px;
+    }
+}
+
+@media only screen and (max-width: 749px) {
+    .ingredient-list {
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .header-name {
+        font-size: 24px;
+    }
+    
+    .label {
+        margin-left: 0px;
+    }
+    
+    .list {
+        margin-bottom: 16px;
+    }
+    
+    header {
+        height: inherit;
+    }
+    
+    .card-content {
+        margin-top: 64px;
+    }
+    
+    .text-input {
+        font-size: 18px;
+    }
+    
+    .text-input-name {
+        margin-top: 12px;
+        font-size: 22px;
+    }
 }
