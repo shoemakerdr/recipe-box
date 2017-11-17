@@ -32,7 +32,7 @@ class Modal extends Component {
                     <div
                         id='x-escape'
                         onClick={this.redirectHome}
-                        className='modal-x'
+                        className='x-button'
                     >
                         ×
                     </div>
