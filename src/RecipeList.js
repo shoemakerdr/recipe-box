@@ -29,18 +29,24 @@ const RecipeList = props => {
                 </div>
             </Link>
             {props.recipes.length ?
-                <div>
+                <div className='recipe-list'>
                     {props.recipes.map(recipe => {
                         return (
-                            <Link key={recipe.id} to={`/recipes/${recipe.id}`}>
-                                <div className='list-item'>
-                                    <h3>{recipe.name}</h3>
+                            <div key={recipe.id} className='list-item'>
+                                <Link to={`/recipes/${recipe.id}`}>
+                                    <h2 className='recipe-name'>{recipe.name}</h2>
+                                </Link>
+                                <div
+                                    onClick={props.removeRecipe(recipe.id)}
+                                    className='x-button lower-z'
+                                >
+                                    ×
                                 </div>
-                            </Link>
+                            </div>
                         )
                     })}
                 </div>
-                : 'No recipes yet.'}
+                : <h2 className='list-item'>No recipes yet.</h2>}
         </div>
     )
 }
