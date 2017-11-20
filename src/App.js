@@ -47,7 +47,7 @@ class App extends Component {
     render() {
         const { escapePressed } = this.state
         return (
-            <Router>
+            <Router basename='/recipe-box'>
                 <div className="App">
                     <div className="App-header">
                         <h1>Recipe Box</h1>
